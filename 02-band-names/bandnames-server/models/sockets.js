@@ -16,7 +16,7 @@ class Sockets {
         // On connection
         this.io.on('connection', ( socket ) => {
 
-          console.log('Cliente conectado');
+          console.log('Client connected');
 
           // Emit to connected client all bands
           socket.emit('band-list', this.bandList.getBands());

@@ -1,35 +1,64 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from "react";
+import BandAdd from "./componets/BandAdd";
+import BandList from "./componets/BandList";
+import { io, Socket } from "socket.io-client";
+
+const connectSocketServer = (): Socket => {
+  const socket: Socket = io("http://localhost:8080", {
+    transports: ["websocket"],
+  });
+  return socket;
+};
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [socket] = useState<Socket>(connectSocketServer);
+  const [online, setOnline] = useState<boolean>(false);
+
+  useEffect(() => {
+    setOnline(socket.connected);
+  }, [socket]);
+
+  useEffect(() => {
+    socket.on('connect', () => {
+      setOnline(true)
+    })
+
+    // socket.disconnect()
+  }, [socket]);
+
+  useEffect(() => {
+    socket.on('disconnect', () => {
+      setOnline(false)
+    })
+  }, [socket]);
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
+    <div className="container">
+      <div className="alert">
         <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
+          service status:
+          {online ? ( 
+            <span className="text-success"> Online</span>
+          ) : (
+            <span className="text-danger"> Offline</span>
+          )}
         </p>
+
+        <h1>Bandnames</h1>
+        <hr />
+
+        <div className="row">
+          <div className="col-8">
+            <BandList />
+          </div>
+
+          <div className="col-4">
+            <BandAdd />
+          </div>
+        </div>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;
