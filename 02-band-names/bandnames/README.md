@@ -48,3 +48,7 @@ export default tseslint.config({
   },
 })
 ```
+
+
+# Things that I learned
+1- React recommends to use multiple effects instead of connecting multiple functions in one

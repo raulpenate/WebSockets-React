@@ -1,30 +1,47 @@
 const BandList = require("./band-list");
 
-
 class Sockets {
+  constructor(io) {
+    this.io = io;
 
-    constructor( io ) {
+    this.bandList = new BandList();
 
-        this.io = io;
+    this.socketEvents();
+  }
 
-        this.bandList = new BandList();
+  socketEvents() {
+    // On connection
+    this.io.on("connection", (socket) => {
+      console.log("Client connected");
 
-        this.socketEvents();
-    }
+      // Emit to connected client all bands
+      socket.emit("band-list", this.bandList.getBands());
 
-    socketEvents() {
-        // On connection
-        this.io.on('connection', ( socket ) => {
+      // Vote band
+      socket.on("vote-band", (id) => {
+        this.bandList.increaseVotes(id);
+        this.io.emit("band-list", this.bandList.getBands());
+      });
 
-          console.log('Client connected');
+      // Delete band
+      socket.on("remove-band", (id) => {
+        this.bandList.removeBand(id);
+        this.io.emit("band-list", this.bandList.getBands());
+      });
 
-          // Emit to connected client all bands
-          socket.emit('band-list', this.bandList.getBands());
-        });
-    }
+      // Rename band
+      socket.on("rename-band", ({ id, name }) => {
+        this.bandList.changeBandName(id, name);
+        this.io.emit("band-list", this.bandList.getBands());
+      });
 
-
+      // Create band
+      socket.on("create-band", (name) => {
+        this.bandList.addBand(name.trim());
+        this.io.emit("band-list", this.bandList.getBands());
+      });
+    });
+  }
 }
-
 
 module.exports = Sockets;

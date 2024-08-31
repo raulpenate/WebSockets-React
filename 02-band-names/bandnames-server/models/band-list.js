@@ -27,7 +27,7 @@ class BandList {
     increaseVotes(id){
         this.bands = this.bands.map( band => {
             if(band.id ===  id){
-                band.vote +=1
+                band.votes +=1
             }
             return band
         })
