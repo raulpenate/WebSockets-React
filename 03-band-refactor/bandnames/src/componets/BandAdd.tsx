@@ -1,9 +1,10 @@
-import { useState } from "react";
-import { useSocket } from "../hooks/useSocket";
+import { useContext, useState } from "react";
+import { SocketContext } from "../context/SocketContext";
+import useSocketHook from "../interfaces/useSocketHook";
 
 const BandAdd: React.FC = () => {
+  const { socket } = useContext<useSocketHook>(SocketContext)
   const [value, setValue] = useState<string>("");
-  const { socket } = useSocket("http://localhost:8080");
 
   const onSubmit = (ev: React.SyntheticEvent) => {
     ev.preventDefault();
