@@ -30,3 +30,33 @@ If Pedro wants to talk to Ana, Pedro have a to start his application and this on
 
 ## Credits
 [Fernado Herrera - Aplicaciones en tiempo real con socket-io](https://fernando-herrera.com/course/react-con-websockets)
+
+# Things that I learned
+- React recommends to use multiple effects instead of connecting multiple functions in one, because those can have a different list of dependencies.
+
+- A component mounts when it’s added to the screen.
+
+- A component updates when it receives new props or state, usually in response to an interaction.
+
+- A component unmounts when it’s removed from the screen.
+```jsx
+useEffect(() => {
+  // This runs after every render
+});
+
+useEffect(() => {
+  // This runs only on mount (when the component appears)
+}, []);
+
+useEffect(() => {
+  // This runs on mount *and also* if either a or b have changed since the last render
+}, [a, b]);
+```
+
+
+Component Did Mount: El componente se monta por primera vez.
+Effect Sync: El efecto (useEffect) se ejecuta para sincronizarse con el estado actual del componente.
+Component Update: El componente se actualiza en respuesta a cambios en las props o el estado.
+Effect Cleanup: Si es necesario, el efecto limpia cualquier recurso antes de volver a ejecutarse o antes de desmontar el componente.
+Component Will Unmount: El componente se desmonta y se limpia cualquier efecto residual.
+Re-Sync on Re-Mount: Si el componente se vuelve a montar, el efecto se sincroniza de nuevo.
