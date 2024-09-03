@@ -6,7 +6,7 @@ Here's the README with the "Other Projects" section moved to the top, right afte
 
 ## Index
 
-1. [Other Projects](#other-projects)
+1. [Projects inside this repo](#other-projects)
 2. [Introduction](#websockets)
 3. [What is Full-Duplex?](#what-is-full-duplex)
 4. [Why Use Sockets?](#why-use-sockets)
@@ -15,17 +15,17 @@ Here's the README with the "Other Projects" section moved to the top, right afte
 7. [Things I Learned about React](#things-i-learned)
 8. [Credits](#credits)
 
-## Other Projects
+## Projects inside this repo
 
 Here’s a table linking to other related projects:
 
-| **Project Name**                      | **Description**                               | **Video Link**                                          |
+| **Project Name**                      | **Description**                               | **Project Link to video & code**                                          |
 |---------------------------------------|-----------------------------------------------|--------------------------------------------------------------|
 | **Socket.IO Real-Time Band Votes**      | A real-time voting  application using Socket.IO. | [![Got to the repo](https://raw.githubusercontent.com/raulpenate/WebSockets-React/main/img/1-bandvotes.png)](https://github.com/raulpenate/WebSockets-React/tree/main/03-band-refactor)       |
 
 ## WebSockets
 
-WebSockets is a technology that allows establishing a continuous `full-duplex` connection between the client and server. But what is `full-duplex`?
+WebSockets is a technology that allows establishing a continuous `full-duplex` connection between the client and server. But first.
 
 ### What is Full-Duplex?
 
