@@ -1,9 +1,3 @@
-Yes, the user can clone the specific folder directly by cloning the entire repository and then navigating to the desired folder. However, GitHub does not allow cloning just a subdirectory of a repository. Instead, users have to clone the whole repository and then work within the subdirectory.
-
-Here’s how you can guide them in the README:
-
----
-
 # Band Names App
 
 This is a real-time band voting application built using React, TypeScript, and Socket.IO.
