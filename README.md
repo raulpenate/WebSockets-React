@@ -19,9 +19,9 @@ Here's the README with the "Other Projects" section moved to the top, right afte
 
 Here’s a table linking to other related projects:
 
-| **Project Name**                      | **Description**                               | **Repository Link**                                          |
+| **Project Name**                      | **Description**                               | **Video Link**                                          |
 |---------------------------------------|-----------------------------------------------|--------------------------------------------------------------|
-| **Socket.IO Real-Time Band Votes**      | A real-time voting  application using Socket.IO. | [![Watch the video](https://raw.githubusercontent.com/raulpenate/WebSockets-React/main/img/1-bandvotes.png)](https://www.youtube.com/watch?v=9A50GIkBZ24)       |
+| **Socket.IO Real-Time Band Votes**      | A real-time voting  application using Socket.IO. | [![Got to the repo](https://raw.githubusercontent.com/raulpenate/WebSockets-React/main/img/1-bandvotes.png)](https://github.com/raulpenate/WebSockets-React/tree/main/03-band-refactor)       |
 
 ## WebSockets
 
