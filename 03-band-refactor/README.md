@@ -5,7 +5,7 @@ This is a real-time band voting application built using React, TypeScript, and S
 ## Video Demonstration
 
 Watch the video demonstration of the app:
-[![Watch the video](https://raw.githubusercontent.com/raulpenate/WebSockets-React/main/img/bandapp.png)](https://www.youtube.com/watch?v=9A50GIkBZ24)
+[![Watch the video](https://raw.githubusercontent.com/raulpenate/WebSockets-React/main/img/1-bandvotes.png)](https://www.youtube.com/watch?v=9A50GIkBZ24)
 
 ## Getting Started
 

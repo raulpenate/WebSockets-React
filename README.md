@@ -1,44 +1,73 @@
+Here's the README with the "Other Projects" section moved to the top, right after the index:
+
+---
+
 # WebSockets
-WebSockets is a technology that makes posible stablish a continuos connection `full-duplex`, between client and server. But what is `full-duplex`? 
 
-## Why use sockets?
-Let's understand that with [`REST` (_Representational State Transfer_)](https://www.ibm.com/topics/rest-apis).
+## Index
+
+1. [Other Projects](#other-projects)
+2. [Introduction](#websockets)
+3. [What is Full-Duplex?](#what-is-full-duplex)
+4. [Why Use Sockets?](#why-use-sockets)
+5. [How Does WebSockets Work?](#how-does-websockets-work)
+6. [Glossary](#glossary)
+7. [Things I Learned about React](#things-i-learned)
+8. [Credits](#credits)
+
+## Other Projects
+
+Here’s a table linking to other related projects:
+
+| **Project Name**                      | **Description**                               | **Repository Link**                                          |
+|---------------------------------------|-----------------------------------------------|--------------------------------------------------------------|
+| **Socket.IO Real-Time Band Votes**      | A real-time voting  application using Socket.IO. | [![Watch the video](https://raw.githubusercontent.com/raulpenate/WebSockets-React/main/img/1-bandvotes.png)](https://www.youtube.com/watch?v=9A50GIkBZ24)       |
+
+## WebSockets
+
+WebSockets is a technology that allows establishing a continuous `full-duplex` connection between the client and server. But what is `full-duplex`?
+
+### What is Full-Duplex?
+
+`Full-duplex` is like having a real-time, uninterrupted conversation with another person face-to-face. In this context, both the client and server can send and receive messages simultaneously.
+
+![full-duplex](https://raw.githubusercontent.com/raulpenate/WebSockets-React/main/img/full-duplex.png)
+
+### Why Use Sockets?
+
+Let's compare this with [`REST` (_Representational State Transfer_)](https://www.ibm.com/topics/rest-apis).
+
 ![rest](https://raw.githubusercontent.com/raulpenate/WebSockets-React/main/img/rest.png)
-- Pedro starts the app and sends a sends a new message to a new person.
-- Server receives the message and answers to Pedro that it was sended.
-- Let's say a new user sends a message to Pedro.
-- Now we've to use a `setInterval` from Pedro's side to do a lot petitions to the server to check if there are available messages.
-- The issue is that almost all the time `setInterval` is going to answer to Pedro, "Hey, there're no messages' over and over, until Pedro gets one.
-- Now think about that with thousands or millions of user, that would stress the server and cost money.
 
-## Full-duplex
-`Full-duplex` is like having a communication with another person face to face, real time no interruptions. We can talk directly to the server and the server can talk directly to us in case someone send us a message.
-![rest](https://raw.githubusercontent.com/raulpenate/WebSockets-React/main/img/full-duplex.png)
+1. Pedro starts the app and sends a new message to a new person.
+2. The server receives the message and informs Pedro that it was sent.
+3. If a new user sends a message to Pedro, we typically use `setInterval` on Pedro's side to repeatedly check the server for new messages.
+4. The problem is that most of the time, `setInterval` will tell Pedro, "Hey, there are no messages," until a message arrives.
 
-## How it works?
-If Pedro wants to talk to Ana, Pedro have a to start his application and this one is going to start a `full-duplex` communication to the server, and the server will also start a `full-duplex` communication with Ana. That's why most modern chat apps keep running in the background.
-![rest](https://raw.githubusercontent.com/raulpenate/WebSockets-React/main/img/how-it-works.png)
+Now, imagine this process with thousands or millions of users—it would stress the server and cost money.
 
-## Glossary
-- __Server__: Backend in Node.
-- __Socket__: Identifier of the connection to a client.
-- __Client__: Device connected to a full-duplex server.
-- __Emit__: Client that emits an event.
-- __Event__: Action that the client or server trigger.
-- __Listen__: Get the information of an event.
+### How Does WebSockets Work?
 
+When Pedro wants to talk to Ana, he starts his application, which establishes a `full-duplex` connection with the server. The server will also establish a `full-duplex` connection with Ana. This is why most modern chat apps keep running in the background.
 
-## Credits
-[Fernado Herrera - Aplicaciones en tiempo real con socket-io](https://fernando-herrera.com/course/react-con-websockets)
+![how-it-works](https://raw.githubusercontent.com/raulpenate/WebSockets-React/main/img/how-it-works.png)
 
-# Things that I learned
-- React recommends to use multiple effects instead of connecting multiple functions in one, because those can have a different list of dependencies.
+### Glossary
 
-- A component mounts when it’s added to the screen.
+- **Server**: Backend in Node.js.
+- **Socket**: Identifier of the connection to a client.
+- **Client**: Device connected to a full-duplex server.
+- **Emit**: Action where the client sends an event.
+- **Event**: Action that the client or server triggers.
+- **Listen**: Receiving information from an event.
 
-- A component updates when it receives new props or state, usually in response to an interaction.
+### Things I Learned about React
 
-- A component unmounts when it’s removed from the screen.
+- React recommends using multiple `useEffect` hooks instead of combining multiple functions in one, as they may have different dependency lists.
+- A component **mounts** when it’s added to the screen.
+- A component **updates** when it receives new props or state, usually in response to an interaction.
+- A component **unmounts** when it’s removed from the screen.
+
 ```jsx
 useEffect(() => {
   // This runs after every render
@@ -49,14 +78,21 @@ useEffect(() => {
 }, []);
 
 useEffect(() => {
-  // This runs on mount *and also* if either a or b have changed since the last render
+  // This runs on mount *and also* if either 'a' or 'b' have changed since the last render
 }, [a, b]);
 ```
 
+## Lifecycle of a Component
 
-Component Did Mount: El componente se monta por primera vez.
-Effect Sync: El efecto (useEffect) se ejecuta para sincronizarse con el estado actual del componente.
-Component Update: El componente se actualiza en respuesta a cambios en las props o el estado.
-Effect Cleanup: Si es necesario, el efecto limpia cualquier recurso antes de volver a ejecutarse o antes de desmontar el componente.
-Component Will Unmount: El componente se desmonta y se limpia cualquier efecto residual.
-Re-Sync on Re-Mount: Si el componente se vuelve a montar, el efecto se sincroniza de nuevo.
+| **Phase**                 | **Description**                                                                 |
+|---------------------------|---------------------------------------------------------------------------------|
+| **Component Did Mount**    | The component is mounted for the first time.                                    |
+| **Effect Sync**            | The effect (`useEffect`) is executed to synchronize with the current component state. |
+| **Component Update**       | The component updates in response to changes in props or state.                |
+| **Effect Cleanup**         | The effect cleans up any resources before re-executing or before unmounting the component. |
+| **Component Will Unmount** | The component is unmounted, and any residual effects are cleaned up.            |
+| **Re-Sync on Re-Mount**    | If the component is re-mounted, the effect syncs again.                        |
+
+### Credits
+
+[Fernando Herrera - Aplicaciones en tiempo real con socket-io](https://fernando-herrera.com/course/react-con-websockets)
