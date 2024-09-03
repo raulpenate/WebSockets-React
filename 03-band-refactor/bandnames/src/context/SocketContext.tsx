@@ -7,7 +7,6 @@ interface SocketProviderProps {
 }
 
 const defaultSocketHook: useSocketHook = {
-    socket: null,
     online: false,
   }
 

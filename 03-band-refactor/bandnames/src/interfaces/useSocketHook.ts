@@ -1,7 +1,7 @@
 import { Socket } from "socket.io-client";
 
 interface useSocketHook {
-  socket: Socket | null;
+  socket?: Socket;
   online: boolean;
 }
 
