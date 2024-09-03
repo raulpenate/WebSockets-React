@@ -1,7 +1,3 @@
-Here's the README with the "Other Projects" section moved to the top, right after the index:
-
----
-
 # WebSockets
 
 ## Index
