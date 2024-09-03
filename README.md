@@ -1,4 +1,4 @@
-# WebSockets
+# WebSockets with React and Socket.IO
 
 ## Index
 
@@ -18,6 +18,9 @@ Here’s a table linking to other related projects:
 | **Project Name**                      | **Description**                               | **Project Link to video & code**                                          |
 |---------------------------------------|-----------------------------------------------|--------------------------------------------------------------|
 | **Socket.IO Real-Time Band Votes**      | A real-time voting  application using Socket.IO. | [![Got to the repo](https://raw.githubusercontent.com/raulpenate/WebSockets-React/main/img/1-bandvotes.png)](https://github.com/raulpenate/WebSockets-React/tree/main/03-band-refactor)       |
+| **Socket.IO Real-Time Ticket Queues App**      | Ticket queues in real time (in progress)  | [![Got to the repo](https://raw.githubusercontent.com/raulpenate/WebSockets-React/main/img/2-ticketqueues.png)](https://github.com/raulpenate/WebSockets-React/tree/main/04-ticket-app)   
+| **Socket.IO Real-Time Maps**      | Real-Time maps using socket.IO (in progress). | [![Got to the repo](https://raw.githubusercontent.com/raulpenate/WebSockets-React/main/img/3-maps.png)]()   
+| **Socket.IO Chat**      | The mythical chat app using socket.IO (in progress). | [![Got to the repo](https://raw.githubusercontent.com/raulpenate/WebSockets-React/main/img/4-chatapp.png)]()   
 
 ## WebSockets
 
