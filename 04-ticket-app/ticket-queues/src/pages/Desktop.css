@@ -1,0 +1,5 @@
+@media (width >= 1200px) {
+    .position-btn{
+        justify-content: start !important;
+    }
+}

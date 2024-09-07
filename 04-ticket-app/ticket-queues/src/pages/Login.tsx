@@ -1,67 +1,106 @@
 import "./Login.css";
-import React from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 import type { FormProps } from "antd";
-import { Button, Checkbox, Form, Input } from "antd";
-import { LoginOutlined } from "@ant-design/icons";
+import { Button, Divider, Form, Input, Typography } from "antd";
+import { DesktopOutlined, LoginOutlined } from "@ant-design/icons";
+import { redirect, useNavigate } from "react-router-dom";
+import { useHideMenu } from "../hooks/useHideMenu";
+import {
+  getUserStorage,
+  iUserStorage,
+  setUserStorage,
+} from "../helpers/getUsuariosStorage";
+import { useShowDesktop } from "../hooks/useShowDesktop";
 
 type FieldType = {
-  agent?: string;
-  password?: string;
-  remember?: string;
+  agent: string;
+  desktop: string;
 };
 
-const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
-  console.log("Success:", values);
+const Login = () => {
+
+  useHideMenu(false);
+
+  useShowDesktop();
+
+  const navigate = useNavigate();
+
+  const { Title, Text } = Typography;
+
+  const onFinish: FormProps<FieldType>["onFinish"] = ({
+    agent,
+    desktop,
+  }: FieldType) => {
+    console.log("Success:", { agent, desktop });
+
+    if ("agent" in { agent } && "desktop" in { desktop }) {
+      setUserStorage({ agent, desktop } as iUserStorage);
+    }
+
+    navigate("/desktop");
+  };
+
+  const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (
+    errorInfo
+  ) => {
+    console.log("Failed:", errorInfo);
+  };
+
+  return (
+    <>
+      <div className="position">
+        <div className="titles">
+          <div>
+            <DesktopOutlined className="icon" />
+          </div>
+          <div>
+            <div>
+              <Title level={2}>Log in</Title>
+              <Text>Enter your name and desk number</Text>
+            </div>
+          </div>
+          <Divider />
+        </div>
+        <Form
+          name="basic"
+          labelCol={{ span: 24 }}
+          wrapperCol={{ span: 24 }}
+          style={{ maxWidth: 1000 }}
+          initialValues={{ remember: true }}
+          onFinish={onFinish}
+          onFinishFailed={onFinishFailed}
+          autoComplete="off"
+        >
+          <Form.Item<FieldType>
+            label="Agent name"
+            name="agent"
+            rules={[
+              { required: true, message: "Please input your agent name!" },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+
+          <Form.Item<FieldType>
+            label="Desktop number"
+            name="desktop"
+            rules={[
+              { required: true, message: "Please input your desktop number!" },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+
+          <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+            <Button type="primary" htmlType="submit">
+              <LoginOutlined />
+              Log in
+            </Button>
+          </Form.Item>
+        </Form>
+      </div>
+    </>
+  );
 };
-
-const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (errorInfo) => {
-  console.log("Failed:", errorInfo);
-};
-
-const Login: React.FC = () => (
-  <div className="position">
-    <Form
-      name="basic"
-      labelCol={{ span: 24 }}
-      wrapperCol={{ span: 24 }}
-      style={{ maxWidth: 1000 }}
-      initialValues={{ remember: true }}
-      onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
-      autoComplete="off"
-    >
-      <Form.Item<FieldType>
-        label="Agent username"
-        name="agent"
-        rules={[{ required: true, message: "Please input your agent username!" }]}
-      >
-        <Input />
-      </Form.Item>
-
-      <Form.Item<FieldType>
-        label="Password"
-        name="password"
-        rules={[{ required: true, message: "Please input your password!" }]}
-      >
-        <Input.Password />
-      </Form.Item>
-
-      <Form.Item<FieldType>
-        name="remember"
-        valuePropName="checked"
-        wrapperCol={{ offset: 8, span: 16 }}
-      >
-        <Checkbox>Remember me</Checkbox>
-      </Form.Item>
-
-      <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-        <Button type="primary" htmlType="submit">
-          <LoginOutlined/>
-          Log in
-        </Button>
-      </Form.Item>
-    </Form>
-  </div>
-);
 
 export default Login;

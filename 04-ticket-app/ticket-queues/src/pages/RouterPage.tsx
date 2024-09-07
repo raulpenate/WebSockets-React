@@ -1,5 +1,5 @@
 import "./RouterPage.css";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
@@ -12,11 +12,14 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Login from "./Login";
 import CreateTicket from "./CreateTicket";
 import Queue from "./Queue";
+import Desktop from "./Desktop";
+import { UiContext } from "../context/UiContext";
 
 const { Header, Sider, Content } = Layout;
 
 const RouterPage: React.FC = () => {
-  const [collapsed, setCollapsed] = useState(false);
+  const { hideMenu } = useContext(UiContext);
+
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
@@ -42,7 +45,13 @@ const RouterPage: React.FC = () => {
   return (
     <Router>
       <Layout className="full-h">
-        <Sider trigger={null} collapsible collapsedWidth={0} breakpoint="md">
+        <Sider
+          hidden={hideMenu}
+          trigger={null}
+          collapsible
+          collapsedWidth={0}
+          breakpoint="md"
+        >
           <div className="demo-logo-vertical" />
           <Menu
             theme="dark"
@@ -52,18 +61,6 @@ const RouterPage: React.FC = () => {
           />
         </Sider>
         <Layout>
-          <Header style={{ padding: 0, background: colorBgContainer }}>
-            <Button
-              type="text"
-              icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-              onClick={() => setCollapsed(!collapsed)}
-              style={{
-                fontSize: "16px",
-                width: 64,
-                height: 64,
-              }}
-            />
-          </Header>
           <Content
             style={{
               margin: "24px 16px",
@@ -76,6 +73,7 @@ const RouterPage: React.FC = () => {
               <Route path="/login" Component={Login} />
               <Route path="/queue" Component={Queue} />
               <Route path="/create" Component={CreateTicket} />
+              <Route path="/desktop" Component={Desktop} />
             </Routes>
           </Content>
         </Layout>
