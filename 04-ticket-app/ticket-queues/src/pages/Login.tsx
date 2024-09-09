@@ -1,7 +1,7 @@
 import "./Login.css";
 import React, { ReactNode, useEffect, useState } from "react";
 import type { FormProps } from "antd";
-import { Button, Divider, Form, Input, Typography } from "antd";
+import { Button, Divider, Form, Input, InputNumber, Typography } from "antd";
 import { DesktopOutlined, LoginOutlined } from "@ant-design/icons";
 import { redirect, useNavigate } from "react-router-dom";
 import { useHideMenu } from "../hooks/useHideMenu";
@@ -18,7 +18,6 @@ type FieldType = {
 };
 
 const Login = () => {
-
   useHideMenu(false);
 
   useShowDesktop();
@@ -74,6 +73,7 @@ const Login = () => {
           <Form.Item<FieldType>
             label="Agent name"
             name="agent"
+            hasFeedback={true}
             rules={[
               { required: true, message: "Please input your agent name!" },
             ]}
@@ -84,11 +84,16 @@ const Login = () => {
           <Form.Item<FieldType>
             label="Desktop number"
             name="desktop"
+            hasFeedback={true}
             rules={[
-              { required: true, message: "Please input your desktop number!" },
+              {
+                pattern: /\d{1,2}/g,
+                required: true,
+                message: "Please input your desktop number!",
+              },
             ]}
           >
-            <Input />
+            <InputNumber min={1} />
           </Form.Item>
 
           <Form.Item wrapperCol={{ offset: 8, span: 16 }}>

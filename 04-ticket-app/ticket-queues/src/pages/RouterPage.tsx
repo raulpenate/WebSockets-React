@@ -70,6 +70,7 @@ const RouterPage: React.FC = () => {
             }}
           >
             <Routes>
+              <Route path="/" Component={Login} />
               <Route path="/login" Component={Login} />
               <Route path="/queue" Component={Queue} />
               <Route path="/create" Component={CreateTicket} />
