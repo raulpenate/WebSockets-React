@@ -1,13 +1,13 @@
 import { iTicket } from "../types/ticket";
+import { iTicketList } from "../types/ticketList";
+import Ticket from "./ticket";
 
-const Ticket = require("./ticket");
-
-class TicketList {
+class TicketList implements iTicketList{
   private lastNumber: number;
-  private waiting: number[];
-  private assigned: iTicket[];
+  waiting: iTicket[];
+  assigned: iTicket[];
 
-  private constructor() {
+  constructor() {
     this.lastNumber = 0;
 
     this.waiting = [];
@@ -19,27 +19,32 @@ class TicketList {
     return this.lastNumber;
   }
 
-  get last13() {
+  get last13(): iTicket[] {
     return this.assigned.slice(0, 13);
   }
 
-  createTicket() {
-    const newTicket = Ticket(this.nextNumber);
+  createTicket(): iTicket {
+    const newTicket = new Ticket(this.nextNumber);
     this.waiting.push(newTicket);
     return newTicket;
   }
 
-  assignTicket(agent: string, desktop: string) {
+  assignTicket(agent: string, desktop: string): iTicket | undefined {
     if (this.waiting.length === 0) return;
 
-    const nextTicket: iTicket = {
-      ticket: this.waiting.shift()!,
-      agent: agent,
-      desktop: desktop,
+    const { id, number } = this.waiting.shift()!;
+
+    const nextTicket = {
+      id,
+      number,
+      agent,
+      desktop,
     };
 
     this.assigned.unshift(nextTicket);
+
+    return nextTicket;
   }
 }
 
-module.exports = TicketList;
+export default TicketList;

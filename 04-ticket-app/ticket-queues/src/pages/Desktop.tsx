@@ -1,5 +1,5 @@
 import "./Desktop.css";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Col, Row, Typography, Button, Divider } from "antd";
 import { CloseCircleOutlined, RightCircleOutlined } from "@ant-design/icons";
 import { useHideMenu } from "../hooks/useHideMenu";
@@ -9,6 +9,8 @@ import {
   getUserStorage,
 } from "../helpers/getUsuariosStorage";
 import { useNavigate } from "react-router-dom";
+import { SocketContext } from "../context/SocketContext";
+import { iTicket } from "../interfaces/iTicket";
 
 const Desktop: React.FC = () => {
   useHideMenu(false);
@@ -16,12 +18,13 @@ const Desktop: React.FC = () => {
   useShowDesktop();
 
   const [user] = useState(getUserStorage());
-
+  const { Title, Text } = Typography;
   const { agent, desktop } = user;
 
-  const navigate = useNavigate();
+  const { socket } = useContext(SocketContext);
+  const [ticket, setTicket] = useState<iTicket>();
 
-  const { Title, Text } = Typography;
+  const navigate = useNavigate();
 
   const exit = (): void => {
     cleanUserStorage();
@@ -29,7 +32,13 @@ const Desktop: React.FC = () => {
   };
 
   const nextTicket = (): void => {
-    console.log("next");
+    socket?.emit(
+      "next-desktop-ticket",
+      { agent, desktop },
+      (ticket: iTicket) => {
+        setTicket(ticket);
+      }
+    );
   };
 
   return (
@@ -37,8 +46,10 @@ const Desktop: React.FC = () => {
       <Row>
         <Col span={20}>
           <Title level={2}>{agent}</Title>
-          <Text>You're working in desktop: </Text>
-          <Text type="success">{desktop}</Text>
+          <Text style={{ fontSize: 23 }}>You're working in desktop: </Text>
+          <Text style={{ fontSize: 23 }} type="success">
+            {desktop}
+          </Text>
         </Col>
 
         <Col
@@ -57,9 +68,15 @@ const Desktop: React.FC = () => {
 
       <Row>
         <Col>
-          <Text>You're attending ticket number: </Text>
+          <Text style={{ fontSize: 27 }}>
+            {ticket === undefined
+              ? "Press next to start attending"
+              : ticket?.number
+              ? `You're attending ticket number: `
+              : "No tickets available"}
+          </Text>
           <Text style={{ fontSize: 30 }} type="danger">
-            55
+            {ticket?.number}
           </Text>
         </Col>
       </Row>
@@ -70,7 +87,7 @@ const Desktop: React.FC = () => {
           style={{ display: "flex", justifyContent: "end" }}
           className="position-btn"
         >
-          <Button onClick={nextTicket} type="primary" shape="round">
+          <Button onClick={() => nextTicket()} type="primary" shape="round">
             <RightCircleOutlined />
             Next
           </Button>

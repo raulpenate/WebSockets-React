@@ -1,4 +1,4 @@
-const { v4: uuidv4 } = require("uuid");
+import { v4 as uuidv4 } from "uuid";
 import { iTicket } from "../types/ticket";
 
 class Ticket implements iTicket {
@@ -7,7 +7,7 @@ class Ticket implements iTicket {
   desktop?: string;
   agent?: string;
 
-  constructor(number) {
+  constructor(number: number) {
     this.id = uuidv4();
     this.number = number;
     this.desktop = undefined;
@@ -15,4 +15,4 @@ class Ticket implements iTicket {
   }
 }
 
-module.exports = Ticket;
+export default Ticket;
