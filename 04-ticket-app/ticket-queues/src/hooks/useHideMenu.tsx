@@ -3,7 +3,6 @@ import { UiContext } from "../context/UiContext";
 
 export const useHideMenu = (hide: boolean) => {
   const { showMenu, hiddingMenu } = useContext(UiContext);
-
   useEffect(() => {
     if (hide) {
       hiddingMenu?.();
