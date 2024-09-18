@@ -1,0 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Lilita+One&display=swap");
+@font-face {
+  font-family: arial-unicode;
+  src: url(../src/assets/Arial-Unicode-Bold.ttf);
+}
+
+
+*{
+  font-family: "Lilita One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+body {
+  margin: 0;
+}
