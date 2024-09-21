@@ -1,4 +1,4 @@
-import mapboxgl from "mapbox-gl";
+import mapboxgl, { Marker } from "mapbox-gl";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { v4 } from "uuid";
 
@@ -9,17 +9,8 @@ type coords = {
 };
 
 type MarkerMap = {
-  [key: string]: newCustomMarker;
+  [key: string]: Marker;
 };
-
-class newCustomMarker extends mapboxgl.Marker {
-  id: string;
-
-  constructor(options?: mapboxgl.MarkerOptions) {
-    super(options);
-    this.id = v4();
-  }
-}
 
 export const useMapbox = (initialPoint: coords) => {
   mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_KEY;
@@ -29,27 +20,32 @@ export const useMapbox = (initialPoint: coords) => {
   const [coords, setCoords] = useState<coords>(initialPoint);
 
   const addMarker = useCallback((ev: mapboxgl.MapMouseEvent) => {
-    const { lng, lat } = ev.lngLat;
+    if (map.current) {
+      const { lng, lat } = ev.lngLat;
 
-    const marker: mapboxgl.Marker = new newCustomMarker();
+      const marker = new Marker();
 
-    marker.setLngLat([lng, lat]).addTo(map.current!).setDraggable(true);
+      marker.setLngLat([lng, lat]).addTo(map.current).setDraggable(true);
+      marker.id = v4();
+      markers.current[marker.id] = marker;
 
-    markers.current[(marker as newCustomMarker).id] = marker as newCustomMarker;
-
-    console.log(markers);
+      marker.on("drag", ({ target }) => {
+        const { id } = target;
+        console.log(id);
+      });
+    }
   }, []);
 
   useEffect(() => {
-    if (map.current) return; // initialize map only once
+    if (map.current || !mapContainer.current) return; // initialize map only once
 
     map.current = new mapboxgl.Map({
-      container: mapContainer.current!,
+      container: mapContainer.current,
       style: "mapbox://styles/mapbox/streets-v12",
       center: [coords.lng, coords.lat],
       zoom: coords.zoom,
     });
-  }, []);
+  }, [coords]);
 
   useEffect(() => {
     map.current?.on("load", () => {
@@ -59,14 +55,21 @@ export const useMapbox = (initialPoint: coords) => {
 
   // When map moves
   useEffect(() => {
-    map.current?.on("move", () => {
-      const { lng, lat } = map.current?.getCenter()!;
-      setCoords({
-        lng: +lng.toFixed(4),
-        lat: +lat!.toFixed(4),
-        zoom: +(map.current?.getZoom()!).toFixed(2),
-      });
-    });
+    const handleMove = () => {
+      const center = map.current?.getCenter();
+      const zoom = map.current?.getZoom();
+
+      if (center && zoom) {
+        const { lng, lat } = center;
+        setCoords({
+          lng: +lng.toFixed(4),
+          lat: +lat.toFixed(4),
+          zoom: +zoom.toFixed(2),
+        });
+      }
+    };
+
+    map.current?.on("move", handleMove);
   }, []);
 
   useEffect(() => {
@@ -74,11 +77,11 @@ export const useMapbox = (initialPoint: coords) => {
     return () => {
       map.current?.off("click", addMarker);
     };
-  }, []);
+  }, [addMarker]);
 
   return {
     coords,
     mapContainer,
-    addMarker
+    addMarker,
   };
 };
