@@ -1,21 +1,17 @@
 import mapboxgl, { Marker } from "mapbox-gl";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { v4 } from "uuid";
-
-type coords = {
-  lng: number;
-  lat: number;
-  zoom: number;
-};
-
-type MarkerMap = {
-  [key: string]: Marker;
-};
+import type { MarkerMap, coords } from "../types/mapTypes";
+import { Subject } from "rxjs";
 
 export const useMapbox = (initialPoint: coords) => {
   mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_KEY;
   const mapContainer = useRef(null);
   const markers = useRef<MarkerMap>({});
+
+  const markerMovement = useRef(new Subject());
+  const newMarker = useRef(new Subject());
+
   const map = useRef<mapboxgl.Map | null>(null);
   const [coords, setCoords] = useState<coords>(initialPoint);
 
@@ -29,9 +25,24 @@ export const useMapbox = (initialPoint: coords) => {
       marker.id = v4();
       markers.current[marker.id] = marker;
 
+      newMarker.current.next({
+        id: marker.id,
+        lng,
+        lat,
+      });
+
       marker.on("drag", ({ target }) => {
-        const { id } = target;
-        console.log(id);
+        const coord = target.getLngLat();
+
+        if (coord) {
+          const { id } = target;
+          const { lng, lat } = coord;
+          markerMovement.current.next({
+            id,
+            lng,
+            lat
+          })
+        }
       });
     }
   }, []);
@@ -83,5 +94,7 @@ export const useMapbox = (initialPoint: coords) => {
     coords,
     mapContainer,
     addMarker,
+    newMarker$ : newMarker.current,
+    markerMovement$: markerMovement.current
   };
 };

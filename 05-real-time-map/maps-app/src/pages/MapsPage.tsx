@@ -1,6 +1,7 @@
 import "./MapsPage.css";
 import { useMapbox } from "../hooks/useMapbox";
-import 'mapbox-gl/dist/mapbox-gl.css';
+import "mapbox-gl/dist/mapbox-gl.css";
+import { useEffect } from "react";
 
 const initialPoint = {
   lng: -70.9,
@@ -12,10 +13,22 @@ function MapsPage() {
   const {
     coords: { lng, lat, zoom },
     mapContainer,
-    addMarker
+    addMarker,
+    newMarker$,
+    markerMovement$,
   } = useMapbox(initialPoint);
 
+  useEffect(() => {
+    newMarker$.subscribe((marker) => {
+      console.log("marker", marker);
+    });
+  }, [newMarker$]);
 
+  useEffect(() => {
+    markerMovement$.subscribe((movement) => {
+      console.log("drag", movement);
+    });
+  }, [markerMovement$]);
 
   return (
     <>
