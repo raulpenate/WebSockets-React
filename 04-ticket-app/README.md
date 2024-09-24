@@ -6,7 +6,7 @@ This is a real-time ticket queue application built using React, Antd, TypeScript
 ## Video Demonstration
 
 Watch the video demonstration of the app:
-[![Watch the video](https://raw.githubusercontent.com/raulpenate/WebSockets-React/main/img/2-ticketqueues.png)](https://youtu.be/QKINT0ZB4ug)
+[![Watch the video](https://raw.githubusercontent.com/raulpenate/WebSockets-React/main/img/2-ticketqueues-video.png)](https://youtu.be/QKINT0ZB4ug)
 
 ## Getting Started
 
