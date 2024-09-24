@@ -8,12 +8,12 @@ export const useMapbox = (initialPoint: coords) => {
   mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_KEY;
   const mapContainer = useRef(null);
   const markers = useRef<MarkerMap>({});
-
-  const markerMovement = useRef(new Subject());
-  const newMarker = useRef(new Subject());
-
   const map = useRef<mapboxgl.Map | null>(null);
   const [coords, setCoords] = useState<coords>(initialPoint);
+
+  //RXJS
+  const markerMovement = useRef(new Subject());
+  const newMarker = useRef(new Subject());
 
   const addMarker = useCallback((ev: mapboxgl.MapMouseEvent) => {
     if (map.current) {
@@ -40,8 +40,8 @@ export const useMapbox = (initialPoint: coords) => {
           markerMovement.current.next({
             id,
             lng,
-            lat
-          })
+            lat,
+          });
         }
       });
     }
@@ -94,7 +94,7 @@ export const useMapbox = (initialPoint: coords) => {
     coords,
     mapContainer,
     addMarker,
-    newMarker$ : newMarker.current,
-    markerMovement$: markerMovement.current
+    newMarker$: newMarker.current,
+    markerMovement$: markerMovement.current,
   };
 };
