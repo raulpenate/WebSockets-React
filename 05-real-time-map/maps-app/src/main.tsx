@@ -5,7 +5,7 @@ import MapsApp from "./MapsApp.tsx";
 
 // biome-ignore lint/style/noNonNullAssertion: <explanation>
 createRoot(document.getElementById("root")!).render(
-  <StrictMode>
+  // <StrictMode>
     <MapsApp />
-  </StrictMode>,
+  // </StrictMode>,
 );

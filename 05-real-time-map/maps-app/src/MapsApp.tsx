@@ -1,7 +1,12 @@
+import { SocketProvider } from "./context/SocketContext";
 import MapsPage from "./pages/MapsPage";
 
 const MapsApp = () => {
-    return (<MapsPage/>);
-}
- 
+  return (
+    <SocketProvider>
+      <MapsPage />
+    </SocketProvider>
+  );
+};
+
 export default MapsApp;
