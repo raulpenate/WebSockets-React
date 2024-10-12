@@ -31,7 +31,7 @@ cd WebSockets-React/05-map-app
 
 #### 1. Install dependencies for the frontend (Map App):
 
-Navigate to the `map-frontend` folder and install the necessary packages using `pnpm`:
+Navigate to the `maps-app` folder and install the necessary packages using `pnpm`:
 
 ```bash
 cd map-frontend
@@ -40,7 +40,7 @@ pnpm install
 
 #### 2. Install dependencies for the backend (Map Server):
 
-Navigate to the `map-server` folder and install the necessary packages using `pnpm`:
+Navigate to the `maps-server` folder and install the necessary packages using `pnpm`:
 
 ```bash
 cd ../map-server
