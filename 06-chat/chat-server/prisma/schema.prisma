@@ -5,10 +5,32 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["omitApi"]
 }
 
 datasource db {
   provider = "mongodb"
   url      = env("DATABASE_URL")
+}
+
+model User {
+  id       String  @id @default(auto()) @map("_id") @db.ObjectId
+  name     String
+  email    String  @unique
+  password String
+  online   Boolean @default(false)
+
+  messagesSent     Message[] @relation("SentMessages")
+  messagesReceived Message[] @relation("ReceivedMessages")
+}
+
+model Message {
+  id      String @id @default(auto()) @map("_id") @db.ObjectId
+  from    String @map("fromUserId") @db.ObjectId
+  to      String @map("toUserId") @db.ObjectId
+  message String
+
+  sender   User @relation("SentMessages", fields: [from], references: [id])
+  reciever User @relation("ReceivedMessages", fields: [to], references: [id])
 }

@@ -10,7 +10,7 @@ importers:
     dependencies:
       '@prisma/client':
         specifier: ^5.21.1
-        version: 5.21.1
+        version: 5.21.1(prisma@5.21.1)
       '@types/cors':
         specifier: ^2.8.17
         version: 2.8.17
@@ -23,6 +23,9 @@ importers:
       express:
         specifier: ^4.21.0
         version: 4.21.0
+      express-validator:
+        specifier: ^7.2.0
+        version: 7.2.0
       playwright:
         specifier: ^1.48.1
         version: 1.48.1
@@ -33,6 +36,9 @@ importers:
       '@types/express':
         specifier: ^4.17.21
         version: 4.17.21
+      prisma:
+        specifier: ^5.21.1
+        version: 5.21.1
       tsx:
         specifier: ^4.19.1
         version: 4.19.1
@@ -195,6 +201,21 @@ packages:
       prisma:
         optional: true
 
+  '@prisma/debug@5.21.1':
+    resolution: {integrity: sha512-uY8SAhcnORhvgtOrNdvWS98Aq/nkQ9QDUxrWAgW8XrCZaI3j2X7zb7Xe6GQSh6xSesKffFbFlkw0c2luHQviZA==}
+
+  '@prisma/engines-version@5.21.1-1.bf0e5e8a04cada8225617067eaa03d041e2bba36':
+    resolution: {integrity: sha512-qvnEflL0//lh44S/T9NcvTMxfyowNeUxTunPcDfKPjyJNrCNf2F1zQLcUv5UHAruECpX+zz21CzsC7V2xAeM7Q==}
+
+  '@prisma/engines@5.21.1':
+    resolution: {integrity: sha512-hGVTldUkIkTwoV8//hmnAAiAchi4oMEKD3aW5H2RrnI50tTdwza7VQbTTAyN3OIHWlK5DVg6xV7X8N/9dtOydA==}
+
+  '@prisma/fetch-engine@5.21.1':
+    resolution: {integrity: sha512-70S31vgpCGcp9J+mh/wHtLCkVezLUqe/fGWk3J3JWZIN7prdYSlr1C0niaWUyNK2VflLXYi8kMjAmSxUVq6WGQ==}
+
+  '@prisma/get-platform@5.21.1':
+    resolution: {integrity: sha512-sRxjL3Igst3ct+e8ya/x//cDXmpLbZQ5vfps2N4tWl4VGKQAmym77C/IG/psSMsQKszc8uFC/q1dgmKFLUgXZQ==}
+
   '@socket.io/component-emitter@3.1.2':
     resolution: {integrity: sha512-9BCxFwvbGg/RsZK9tjXd8s4UcwR0MWeFQ1XEKIQVVvAGJyINdrqKMcTRyLoK8Rse1GjzLV9cwjWV1olXRWEXVA==}
 
@@ -355,6 +376,10 @@ packages:
     resolution: {integrity: sha512-aIL5Fx7mawVa300al2BnEE4iNvo1qETxLrPI/o05L7z6go7fCw1J6EQmbK4FmJ2AS7kgVF/KEZWufBfdClMcPg==}
     engines: {node: '>= 0.6'}
 
+  express-validator@7.2.0:
+    resolution: {integrity: sha512-I2ByKD8panjtr8Y05l21Wph9xk7kk64UMyvJCl/fFM/3CTJq8isXYPLeKW/aZBCdb/LYNv63PwhY8khw8VWocA==}
+    engines: {node: '>= 8.0.0'}
+
   express@4.21.0:
     resolution: {integrity: sha512-VqcNGcj/Id5ZT1LZ/cfihi3ttTn+NJmkli2eZADigjq29qTlWi/hAQ43t/VLPq8+UX06FCEx3ByOYet6ZFblng==}
     engines: {node: '>= 0.10.0'}
@@ -424,6 +449,9 @@ packages:
     resolution: {integrity: sha512-0KI/607xoxSToH7GjN1FfSbLoU0+btTicjsQSWQlh/hZykN8KpmMf7uYwPW3R+akZ6R/w18ZlXSHBYXiYUPO3g==}
     engines: {node: '>= 0.10'}
 
+  lodash@4.17.21:
+    resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
+
   media-typer@0.3.0:
     resolution: {integrity: sha512-dq+qelQ9akHpcOl/gUVRTxVIOkAJ1wR3QAvb4RsVjS8oVoFjDGTc679wJYmUmknUF5HwMLOgb5O+a3KxfWapPQ==}
     engines: {node: '>= 0.6'}
@@ -485,6 +513,11 @@ packages:
   playwright@1.48.1:
     resolution: {integrity: sha512-j8CiHW/V6HxmbntOfyB4+T/uk08tBy6ph0MpBXwuoofkSnLmlfdYNNkFTYD6ofzzlSqLA1fwH4vwvVFvJgLN0w==}
     engines: {node: '>=18'}
+    hasBin: true
+
+  prisma@5.21.1:
+    resolution: {integrity: sha512-PB+Iqzld/uQBPaaw2UVIk84kb0ITsLajzsxzsadxxl54eaU5Gyl2/L02ysivHxK89t7YrfQJm+Ggk37uvM70oQ==}
+    engines: {node: '>=16.13'}
     hasBin: true
 
   proxy-addr@2.0.7:
@@ -574,6 +607,10 @@ packages:
   utils-merge@1.0.1:
     resolution: {integrity: sha512-pMZTvIkT1d+TFGvDOqodOclx0QWkkgi6Tdoa8gC8ffGAAqz9pzPTZWAybbsHHoED/ztMtkv/VoYTYyShUn81hA==}
     engines: {node: '>= 0.4.0'}
+
+  validator@13.12.0:
+    resolution: {integrity: sha512-c1Q0mCiPlgdTVVVIJIrBuxNicYE+t/7oKeI9MWLj3fh/uq2Pxh/3eeWbVZ4OcGW1TUf53At0njHw5SMdA3tmMg==}
+    engines: {node: '>= 0.10'}
 
   vary@1.1.2:
     resolution: {integrity: sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==}
@@ -665,7 +702,30 @@ snapshots:
   '@esbuild/win32-x64@0.23.1':
     optional: true
 
-  '@prisma/client@5.21.1': {}
+  '@prisma/client@5.21.1(prisma@5.21.1)':
+    optionalDependencies:
+      prisma: 5.21.1
+
+  '@prisma/debug@5.21.1': {}
+
+  '@prisma/engines-version@5.21.1-1.bf0e5e8a04cada8225617067eaa03d041e2bba36': {}
+
+  '@prisma/engines@5.21.1':
+    dependencies:
+      '@prisma/debug': 5.21.1
+      '@prisma/engines-version': 5.21.1-1.bf0e5e8a04cada8225617067eaa03d041e2bba36
+      '@prisma/fetch-engine': 5.21.1
+      '@prisma/get-platform': 5.21.1
+
+  '@prisma/fetch-engine@5.21.1':
+    dependencies:
+      '@prisma/debug': 5.21.1
+      '@prisma/engines-version': 5.21.1-1.bf0e5e8a04cada8225617067eaa03d041e2bba36
+      '@prisma/get-platform': 5.21.1
+
+  '@prisma/get-platform@5.21.1':
+    dependencies:
+      '@prisma/debug': 5.21.1
 
   '@socket.io/component-emitter@3.1.2': {}
 
@@ -856,6 +916,11 @@ snapshots:
 
   etag@1.8.1: {}
 
+  express-validator@7.2.0:
+    dependencies:
+      lodash: 4.17.21
+      validator: 13.12.0
+
   express@4.21.0:
     dependencies:
       accepts: 1.3.8
@@ -960,6 +1025,8 @@ snapshots:
 
   ipaddr.js@1.9.1: {}
 
+  lodash@4.17.21: {}
+
   media-typer@0.3.0: {}
 
   merge-descriptors@1.0.3: {}
@@ -999,6 +1066,12 @@ snapshots:
       playwright-core: 1.48.1
     optionalDependencies:
       fsevents: 2.3.2
+
+  prisma@5.21.1:
+    dependencies:
+      '@prisma/engines': 5.21.1
+    optionalDependencies:
+      fsevents: 2.3.3
 
   proxy-addr@2.0.7:
     dependencies:
@@ -1122,6 +1195,8 @@ snapshots:
   unpipe@1.0.0: {}
 
   utils-merge@1.0.1: {}
+
+  validator@13.12.0: {}
 
   vary@1.1.2: {}
 
