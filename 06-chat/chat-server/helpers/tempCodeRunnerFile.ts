@@ -1,0 +1,1 @@
+const SECRET_KEY: Secret = process.env.JWT_KEY as Secret;
