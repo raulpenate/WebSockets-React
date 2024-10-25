@@ -1,0 +1,13 @@
+.rememberDiv {
+  display: flex !important;
+  justify-content: center !important;
+  flex-wrap: wrap !important;
+  justify-content: space-between !important;
+  margin: 15px 0;
+  width: 100%;
+}
+
+.zeroMargin {
+  margin: 0 !important;
+  padding: 0 !important;
+}
