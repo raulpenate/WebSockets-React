@@ -6,7 +6,8 @@ import cors from "cors";
 import { Server as socketio } from "socket.io";
 import { PrismaClient } from "@prisma/client";
 
-import router from "../router/auth";
+import { router as authRouter } from "../router/auth";
+import { router as messagesRouter } from "../router/messages";
 
 class Server {
   private app: Application;
@@ -30,15 +31,15 @@ class Server {
 
   private middlewares() {
     this.app.use(
-      cors(
-        // {origin: "http://localhost:5173",}
-      )
+      cors()
+      // {origin: "http://localhost:5173",}
     );
 
     //Parse body
-    this.app.use(express.json())
+    this.app.use(express.json());
 
-    this.app.use("/api/login", router);
+    this.app.use("/api/login", authRouter);
+    this.app.use("/api/messages", messagesRouter);
   }
 
   public execute() {

@@ -6,10 +6,11 @@ import {
   UserFields,
   UserValidation as Validation,
 } from "../definitions/enums/userFields.enum";
+import { validateJWT } from "../middlewares/validate-jwt";
 
 const { NAME, EMAIL, PASSWORD, ONLINE } = UserFields;
 
-const router = Router();
+export const router = Router();
 
 router.post(
   "/new",
@@ -33,6 +34,4 @@ router.post(
   login
 );
 
-router.get("/renew", renewToken);
-
-export default router;
+router.get("/renew", validateJWT, renewToken);

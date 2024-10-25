@@ -15,21 +15,25 @@ datasource db {
 }
 
 model User {
-  id       String  @id @default(auto()) @map("_id") @db.ObjectId
-  name     String
-  email    String  @unique
-  password String
-  online   Boolean @default(false)
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  email     String   @unique
+  password  String
+  online    Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   messagesSent     Message[] @relation("SentMessages")
   messagesReceived Message[] @relation("ReceivedMessages")
 }
 
 model Message {
-  id      String @id @default(auto()) @map("_id") @db.ObjectId
-  from    String @map("fromUserId") @db.ObjectId
-  to      String @map("toUserId") @db.ObjectId
-  message String
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  from      String   @map("fromUserId") @db.ObjectId
+  to        String   @map("toUserId") @db.ObjectId
+  message   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   sender   User @relation("SentMessages", fields: [from], references: [id])
   reciever User @relation("ReceivedMessages", fields: [to], references: [id])

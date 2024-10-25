@@ -1,6 +1,6 @@
 import jwt, { type Secret } from "jsonwebtoken";
 
-const SECRET_KEY: Secret = process.env.JWT_KEY;
+export const SECRET_KEY: Secret = process.env.JWT_KEY;
 
 export const generateJWT = (uid: string) => {
   return new Promise((resolve, reject) => {

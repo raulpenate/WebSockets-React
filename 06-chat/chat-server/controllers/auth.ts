@@ -84,9 +84,30 @@ export const login = async (req: CustomRequest<User>, res: Response) => {
   }
 };
 
-export const renewToken = async (_req: Request, res: Response) => {
-  res.json({
-    ok: true,
-    msg: "renew",
-  });
+export const renewToken = async (
+  req: CustomRequest<undefined>,
+  res: Response
+) => {
+  const { uid } = req;
+
+  try {
+    if (!uid) {
+      return res.status(401).json({
+        ok: false,
+        msg: "No JWT",
+      });
+    }
+
+    const user = await prisma.user.findUnique({ where: { id: uid } });
+
+    const token = await generateJWT(uid);
+
+    res.json({
+      ok: true,
+      user,
+      token,
+    });
+  } catch (error) {
+    errorMsg(res, error);
+  }
 };
