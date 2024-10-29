@@ -1,4 +1,4 @@
-import { UserOutlined } from "@ant-design/icons";
+import { MailOutlined } from "@ant-design/icons";
 import { ProFormText } from "@ant-design/pro-components";
 
 const EmailField = () => {
@@ -7,7 +7,7 @@ const EmailField = () => {
       name="email"
       fieldProps={{
         size: "large",
-        prefix: <UserOutlined className={"prefixIcon"} />,
+        prefix: <MailOutlined className={"prefixIcon"} />,
       }}
       placeholder={"Email *"}
       rules={[

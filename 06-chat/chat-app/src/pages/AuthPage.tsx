@@ -16,6 +16,9 @@ import type { AuthType } from "../types/Auth.types";
 import CustomAuthForm from "../components/Auth/CustomAuthForm";
 import HelpFields from "../components/Fields/HelpFields";
 import AuthTabs from "../components/Tabs/AuthTabs";
+import { appRoutes } from "../enums/AppRoutes.enum";
+import { useNavigate } from "react-router-dom";
+import logo from "../assets/logo.png";
 
 const AuthPage = () => {
   const { token } = theme.useToken();
@@ -30,8 +33,8 @@ const AuthPage = () => {
   };
 
   const loginFormProps = {
-    logo: "https://github.githubassets.com/favicons/favicon.png",
-    title: "Login",
+    logo,
+    title: "Chat app",
     subTitle: "Welcome to the chat app",
     actions: (
       <Space>
@@ -48,17 +51,24 @@ const AuthPage = () => {
     color: "rgba(0, 0, 0, 0.65)",
   };
 
+  const navigate = useNavigate();
+
   return (
     <ProConfigProvider hashed={false}>
       <div style={formStyle}>
-        <LoginForm {...loginFormProps}>
+        <LoginForm
+          {...loginFormProps}
+          onFinish={() => {
+            navigate(appRoutes.CHAT);
+          }}
+        >
           <AuthTabs authState={{ AuthType, setAuthType }} />
           {AuthType === "login" && (
             <>
               <CustomAuthForm /> <HelpFields />
             </>
           )}
-          {AuthType === "register" && <CustomAuthForm />}
+          {AuthType === "register" && <CustomAuthForm registerMode={true} />}
         </LoginForm>
       </div>
     </ProConfigProvider>

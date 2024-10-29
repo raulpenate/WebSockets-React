@@ -1,0 +1,85 @@
+:root {
+  --primary: #fec91e;
+  --secondary: #fe4040;
+}
+
+a,
+li {
+  text-decoration: none;
+}
+
+.signUpBtn {
+  background-color: #000;
+  border-radius: 0.5rem;
+  border: 2px solid #000 !important;
+  color: #fffbf4;
+  font-family: "DM Serif Display", serif !important;
+  font-size: 1.5rem;
+  padding: 5px 20px !important;
+  width: 100%;
+}
+
+.liBtn {
+  padding: 2%;
+}
+
+.logoLi {
+  margin: 0 0 0 2%;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+}
+
+.logo {
+  height: 50px;
+}
+
+.menu {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  margin: 0 !important;
+  height: 6vh;
+  padding: 0;
+}
+
+.menu > li {
+  font-size: 1.5rem;
+}
+
+.menu a {
+  display: inline-block;
+}
+
+.menu :not(li:nth-child(1), .logo, li:nth-child(6), .signUpBtn):hover {
+  border-bottom: 4px solid var(--primary);
+  margin-bottom: -4px;
+}
+
+.signUpBtn:hover {
+  background-color: var(--primary);
+  color: #000;
+}
+
+.menu li:nth-child(1) {
+  margin-right: auto;
+}
+
+.menu li:nth-child(2),
+.menu li:nth-child(3),
+.menu li:nth-child(4),
+.menu li:nth-child(5) {
+  margin: 0 2%;
+  transition: 0.2s;
+}
+
+.menu li:nth-child(5) {
+  margin: 0 0vh;
+}
+
+.signUpBtn,
+.menu li:nth-child(5) {
+  margin-left: auto;
+}
