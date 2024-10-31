@@ -3,6 +3,7 @@
 :root {
   --primary: #fec91e;
   --secondary: #fe4040;
+  --background: #faf6e7;
 }
 
 nav,
@@ -15,25 +16,32 @@ main {
   font-family: "DM Sans", sans-serif !important;
   font-size: 1rem;
   line-height: 1.2;
+  background-color: var(--background) !important;
+  margin: 0 !important;
 }
 
 nav {
   box-shadow: 1px 1px 1px #0000002a;
   line-height: 2.5vh !important;
   position: sticky !important;
-  stroke: rgb(153 51 102 / 1);
   top: 0 !important;
+  z-index: 100 !important;
+  background-color: var(--background) !important;
 }
 
 footer {
-  bottom: 0;
-  position: fixed;
+  /* bottom: 0 !important; */
+  /* position: fixed !important; */
   text-align: center !important;
   width: 100%;
 }
 
 .container {
   display: flex;
+}
+
+.content {
+  margin: 0 !important;
 }
 
 .info {
@@ -74,6 +82,7 @@ footer {
   position: relative;
   bottom: -35px;
   height: 150px !important;
+  z-index: 1 !important;
 }
 
 .title {
@@ -89,9 +98,9 @@ footer {
 }
 
 .registerBtn {
-  border: 2px solid #000 !important;
   background-color: #000;
-  color: #fff;
+  border: 2px solid #000 !important;
+  color: var(--background) !important;
   font-family: "DM Serif Display", serif !important;
   font-size: 1.5rem;
   font-weight: bold;
@@ -130,6 +139,17 @@ footer {
   background-color: #fff;
 }
 
-.content {
-  margin: 1vh 50px;
+.heroPosition {
+  margin: 0 30px;
+  width: 94% !important;
+}
+
+.heroPosition div:nth-child(4):hover {
+  right: 10%;
+}
+
+@media (width <= 1360px) {
+  .heroPosition div:nth-child(4):hover {
+    right: 0%;
+  }
 }

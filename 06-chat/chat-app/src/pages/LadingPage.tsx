@@ -1,54 +1,93 @@
 import type React from "react";
-import { Button, Layout, theme } from "antd";
+import { Layout } from "antd";
 import LadingMenu from "../components/Menu/LandingMenu";
+import HeroSection from "../components/landing/HeroSection";
 import "../css/pages/LadingPage.css";
-import logo from "../assets/logo.svg";
-import people from "../assets/people.svg";
+import Chat from "../components/landing/ChatInfo";
+import girl from "../assets/girl.svg?react";
+import boy from "../assets/boy.svg?react";
+import pm from "../assets/pm.svg?react";
+import { Color } from "../enums/Color";
+import type { IChatContent } from "../interfaces/ChatContent.interface";
 
 const { Content, Footer } = Layout;
 
-const LandinPage: React.FC = () => {
-  const repoUrl =
-    "https://github.com/raulpenate/WebSockets-React?tab=readme-ov-file#websockets-with-react-and-socketio";
+const chatContent: IChatContent[] = [
+  {
+    title: "Real-Time Messaging",
+    text: "Experience instant communication with real-time messaging. Send the receive messages instantly, share photos and videos, and never miss a moment. Stay in the loop, whether you're at home or on the go",
+    imageSVG: girl,
+    style: {
+      backgroundColor: Color.PASTELYELLOW,
+      color: Color.BLACK,
+      width: "32%",
+      transform: "rotate(-6deg)",
+    },
+  },
+  {
+    title: "Real-Time Messaging",
+    text: "Experience instant communication with real-time messaging. Send the receive messages instantly, share photos and videos, and never miss a moment. Stay in the loop, whether you're at home or on the go",
+    imageSVG: girl,
+    style: {
+      backgroundColor: Color.PASTELGREEN,
+      color: Color.BLACK,
+      width: "32%",
+      transform: "rotate(6deg)",
+    },
+  },
+  {
+    title: "Real-Time Messaging",
+    text: "Experience instant communication with real-time messaging. Send the receive messages instantly, share photos and videos, and never miss a moment. Stay in the loop, whether you're at home or on the go",
+    imageSVG: girl,
+    style: {
+      backgroundColor: Color.PASTELVIOLET,
+      color: Color.BLACK,
+      width: "32%",
+      transform: "rotate(-6deg)",
+    },
+  },
+  {
+    title: "Chat with multiple people made easy",
+    text: "You can talk to any of your friends in private conversations, just log in and they will be there, because we haven't made the add function everyone know everyone; we are not missing requirements, that's a feature!",
+    imageSVG: girl,
+    style: {
+      backgroundColor: Color.PASTELSALMON,
+      color: Color.BLACK,
+      width: "64%",
+      transform: "rotate(-6deg)",
+    },
+  },
+  {
+    title: "Chat from everywhere!",
+    text: "Techically if you're in Europa, or Jupiter II, the smallest of the four Galilean moons orbiting Jupiter; maybe our app it's not going to work, but since you're using it from there you're part of NASA, ESA orCNSA  so you'll figure things out.",
+    imageSVG: girl,
+    style: {
+      backgroundColor: Color.PASTELBLUE,
+      color: Color.BLACK,
+      width: "32%",
+      transform: "rotate(6deg)",
+    },
+  },
+];
 
+const LandingPage: React.FC = () => {
   return (
     <Layout className="layout">
       <LadingMenu />
       <Content className="content">
-        <div className="container">
-          <div className="info">
-            <div className="logoContainer">
-              <img src={logo} className="logoImg" alt="chambre logo" />
-            </div>
-            <h1 className="title">Chambre</h1>
-            <p className="text">
-              Write, talk, and communicate in a private and secure space with
-              your loved ones—and even those you’re not so fond of. Join us on a
-              journey to redefine social interaction, all while embracing the
-              anxiety that often comes with real-life interactions for using our
-              platform too much.
-            </p>
-            <Button className="registerBtn">Register for free!</Button>
-            <p className="postData">
-              This app may be funny, but it operates as intended{" "}
-              <a
-                href={repoUrl}
-                target="_blank"
-                className="repoUrl"
-                rel="noreferrer"
-              >
-                Check the repo
-              </a>
-            </p>
-          </div>
-          <div className="peopleContainer">
-            <img src={people} className="peopleImg" alt="people chatting" />
-          </div>
+        <HeroSection />
+        <div className="heroPosition">
+          {chatContent.map((props, index) => (
+            // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+            <Chat key={index} {...props} />
+          ))}
         </div>
+        {/* <div className="aboutUs">a</div> */}
+        {/* <div className="contactUs">a</div> */}
       </Content>
       <Footer>Ant Design ©{new Date().getFullYear()} Created by Ant UED</Footer>
     </Layout>
   );
 };
 
-export default LandinPage;
+export default LandingPage;

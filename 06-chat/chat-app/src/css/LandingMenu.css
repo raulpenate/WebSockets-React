@@ -1,6 +1,7 @@
 :root {
   --primary: #fec91e;
   --secondary: #fe4040;
+  --background: #faf6e7;
 }
 
 a,
@@ -12,7 +13,7 @@ li {
   background-color: #000;
   border-radius: 0.5rem;
   border: 2px solid #000 !important;
-  color: #fffbf4;
+  color: var(--background) !important;
   font-family: "DM Serif Display", serif !important;
   font-size: 1.5rem;
   padding: 5px 20px !important;
@@ -43,6 +44,8 @@ li {
   margin: 0 !important;
   height: 6vh;
   padding: 0;
+  z-index: 10;
+  background-color: var(--background) !important;
 }
 
 .menu > li {
@@ -60,7 +63,7 @@ li {
 
 .signUpBtn:hover {
   background-color: var(--primary);
-  color: #000;
+  color: #000 !important;
 }
 
 .menu li:nth-child(1) {

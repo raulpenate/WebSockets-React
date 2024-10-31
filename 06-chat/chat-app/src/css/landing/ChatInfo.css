@@ -1,0 +1,75 @@
+:root {
+  --primary: #fec91e;
+  --secondary: #fe4040;
+}
+
+.chat {
+  display: flex !important;
+  position: relative;
+  float: right;
+  flex-direction: row !important;
+  padding: 1% !important;
+  z-index: 1 !important;
+  border-radius: 10px !important;
+  transition: transform 0.15s linear;
+  box-shadow: 5px 5px 7px rgba(33, 33, 33, 0.7);
+}
+
+.chat:hover {
+  transform: scale(1.25) !important;
+  z-index: 10 !important;
+  box-shadow: 10px 10px 7px rgba(0, 0, 0, 0.7) !important;
+}
+
+.chat:hover {
+  transform: scale(1.25) !important;
+  z-index: 10 !important;
+  box-shadow: 10px 10px 7px rgba(0, 0, 0, 0.7) !important;
+}
+
+.chatInfo {
+  display: flex;
+  flex-direction: column !important;
+  align-self: center;
+  font-size: 1.4rem;
+  width: 60% !important;
+}
+
+.chatImg {
+  width: 50% !important;
+}
+
+.chatTittle {
+  font-family: "DM Serif Display", serif !important;
+  font-size: 2.5rem;
+  margin: 5px 0;
+}
+
+.chatText {
+  font-size: 1.2rem;
+}
+
+/* .svg {
+  fill: none !important;
+  stroke: #ffffff !important;
+  stroke-width: 2px !important;
+  stroke-dasharray: 2, 2 !important;
+  stroke-linejoin: round !important;
+} */
+
+@media (width <= 1360px) {
+  .chat {
+    width: 100% !important;
+    margin: 2% 0 !important;
+  }
+
+  .chatImg {
+    width: 30% !important;
+  }
+
+  .chat:hover {
+    transform: scale(1) !important;
+    z-index: 10 !important;
+    box-shadow: 10px 10px 7px rgba(0, 0, 0, 0.7) !important;
+  }
+}
