@@ -7,4 +7,5 @@ export interface IChatContent {
     SVGProps<SVGSVGElement> & { title?: string | undefined }
   >;
   style: React.CSSProperties;
+  styleSVG?: React.CSSProperties;
 }

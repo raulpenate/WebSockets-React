@@ -7,7 +7,6 @@
   display: flex !important;
   position: relative;
   float: right;
-  flex-direction: row !important;
   padding: 1% !important;
   z-index: 1 !important;
   border-radius: 10px !important;
@@ -16,15 +15,22 @@
 }
 
 .chat:hover {
-  transform: scale(1.25) !important;
+  transform: scale(1) !important;
   z-index: 10 !important;
   box-shadow: 10px 10px 7px rgba(0, 0, 0, 0.7) !important;
 }
 
 .chat:hover {
-  transform: scale(1.25) !important;
+  transform: scale(1.1) !important;
   z-index: 10 !important;
   box-shadow: 10px 10px 7px rgba(0, 0, 0, 0.7) !important;
+}
+
+.chatApp {
+  font-family: "DM Serif Display", serif !important;
+  font-size: 3.5rem;
+  margin-bottom: 5% !important;
+  text-align: center;
 }
 
 .chatInfo {
@@ -56,6 +62,73 @@
   stroke-dasharray: 2, 2 !important;
   stroke-linejoin: round !important;
 } */
+
+.chatApp span {
+  display: inline-block;
+  text-decoration: underline 3px var(--primary);
+  text-underline-offset: 12px;
+  animation: wavy-waves-anim linear 3000ms infinite;
+}
+
+.chatApp span:nth-of-type(1) {
+  animation-delay: 0ms;
+}
+.chatApp span:nth-of-type(2) {
+  animation-delay: 100ms;
+}
+.chatApp span:nth-of-type(3) {
+  animation-delay: 200ms;
+}
+.chatApp span:nth-of-type(4) {
+  animation-delay: 300ms;
+}
+.chatApp span:nth-of-type(5) {
+  animation-delay: 400ms;
+}
+.chatApp span:nth-of-type(6) {
+  animation-delay: 500ms;
+}
+.chatApp span:nth-of-type(7) {
+  animation-delay: 600ms;
+}
+.chatApp span:nth-of-type(8) {
+  animation-delay: 700ms;
+}
+.chatApp span:nth-of-type(9) {
+  animation-delay: 800ms;
+}
+.chatApp span:nth-of-type(10) {
+  animation-delay: 900ms;
+}
+
+@keyframes wavy-waves-anim {
+  0% {
+    text-decoration-style: wavy;
+    text-underline-offset: 8px;
+    text-decoration-color: var(--secondary);
+  }
+  5% {
+    text-decoration-style: wavy;
+    text-underline-offset: 0px;
+    text-decoration-color: var(--primary);
+  }
+  25% {
+    text-decoration-style: solid;
+    text-underline-offset: 12px;
+  }
+  37.5% {
+    text-decoration-color: var(--secondary);
+  }
+  45% {
+    text-decoration-color: var(--primary);
+  }
+  87.5% {
+    text-decoration-color: var(--primary);
+  }
+  98% {
+    text-decoration-color: var(--secondary);
+  }
+}
 
 @media (width <= 1360px) {
   .chat {

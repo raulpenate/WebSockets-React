@@ -1,29 +1,17 @@
 import { Button } from "antd";
 import logo from "../../assets/logo.svg";
 import people from "../../assets/people.svg";
-import { useEffect, useState } from "react";
 
-const HeroSection = () => {
-  const [dots, getDots] = useState<HTMLCollectionOf<HTMLElement>>();
+interface props {
+  section: React.RefObject<HTMLDivElement>;
+}
+
+const HeroSection: React.FC<props> = ({ section }) => {
   const repoUrl =
     "https://github.com/raulpenate/WebSockets-React?tab=readme-ov-file#websockets-with-react-and-socketio";
 
-  const animate = () => {
-    getDots(
-      document.getElementsByClassName('dot') as HTMLCollectionOf<HTMLElement>
-    );
-    if (!dots) return;
-    for (const dot of dots) {
-      (dot as HTMLElement).style.padding = "100px";
-    }
-  };
-  useEffect(() => {
-    animate();
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
-  }, [animate]);
-
   return (
-    <div className="container">
+    <div ref={section} className="container">
       <div className="info">
         <div className="logoContainer">
           <img src={logo} className="logoImg" alt="chambre logo" />

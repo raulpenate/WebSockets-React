@@ -144,12 +144,26 @@ footer {
   width: 94% !important;
 }
 
-.heroPosition div:nth-child(4):hover {
-  right: 10%;
-}
+/* .heroPosition .chat:nth-child(5):hover {
+  right: 10 !important;
+} */
 
 @media (width <= 1360px) {
-  .heroPosition div:nth-child(4):hover {
-    right: 0%;
+  .heroPosition .chat:nth-child(5) {
+    /* right: 0% !important; */
+    transform: rotate(6deg) !important;
+  }
+
+  .heroPosition .chat:nth-child(6) {
+    transform: rotate(-6deg) !important;
+  }
+
+  .heroPosition .chat:nth-child(5):hover {
+    right: 0% !important;
+    transform: scale(1) !important;
+  }
+
+  .heroPosition .chat:nth-child(6):hover {
+    transform: scale(1) !important;
   }
 }
